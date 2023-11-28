@@ -1,0 +1,22 @@
+Balance Measures
+                Type Diff.Adj        M.Threshold
+distance    Distance   0.0008     Balanced, <0.1
+Environment  Contin.  -0.2227 Not Balanced, >0.1
+Age          Contin.   0.1925 Not Balanced, >0.1
+Sex          Contin.   0.0490     Balanced, <0.1
+
+Balance tally for mean differences
+                   count
+Balanced, <0.1         2
+Not Balanced, >0.1     2
+
+Variable with the greatest mean difference
+    Variable Diff.Adj        M.Threshold
+ Environment  -0.2227 Not Balanced, >0.1
+
+Sample sizes
+                     Control Treated
+All                   100.       100
+Matched (ESS)          37.29      87
+Matched (Unweighted)   51.        87
+Unmatched              49.        13
