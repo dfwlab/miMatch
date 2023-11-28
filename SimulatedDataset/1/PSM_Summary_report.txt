@@ -1,0 +1,39 @@
+
+Call:
+matchit(formula = Group ~ Environment + Age + Sex, data = data, 
+    method = "nearest", distance = "glm", link = "logit", replace = TRUE, 
+    caliper = 0.05, ratio = 1)
+
+Summary of Balance for All Data:
+            Means Treated Means Control Std. Mean Diff. Var. Ratio eCDF Mean
+distance           0.5052        0.4948          0.1895     1.3722    0.0519
+Environment        0.5104        0.4926          0.0850     1.2197    0.0323
+Age                0.5070        0.4732          0.1653     1.4212    0.0514
+Sex                0.4973        0.5007         -0.0166     1.0285    0.0231
+            eCDF Max
+distance        0.15
+Environment     0.08
+Age             0.13
+Sex             0.06
+
+
+Summary of Balance for Matched Data:
+            Means Treated Means Control Std. Mean Diff. Var. Ratio eCDF Mean
+distance           0.5014        0.5014         -0.0006     0.9900    0.0065
+Environment        0.5249        0.5235          0.0064     1.1990    0.0350
+Age                0.4837        0.4845         -0.0039     1.0219    0.0291
+Sex                0.5030        0.5014          0.0076     0.9922    0.0314
+            eCDF Max Std. Pair Dist.
+distance      0.0361          0.0131
+Environment   0.1205          0.9963
+Age           0.0964          0.5216
+Sex           0.0843          1.0903
+
+Sample Sizes:
+              Control Treated
+All            100.       100
+Matched (ESS)   43.88      83
+Matched         52.        83
+Unmatched       48.        17
+Discarded        0.         0
+

@@ -1,0 +1,22 @@
+Balance Measures
+                Type Diff.Adj V.Ratio.Adj  V.Threshold
+distance    Distance  -0.0005      0.9836 Balanced, <2
+Environment  Contin.   0.0899      0.8631 Balanced, <2
+Age          Contin.  -0.0870      0.9344 Balanced, <2
+Sex          Contin.  -0.0201      0.7908 Balanced, <2
+
+Balance tally for variance ratios
+                 count
+Balanced, <2         4
+Not Balanced, >2     0
+
+Variable with the greatest variance ratio
+ Variable V.Ratio.Adj  V.Threshold
+      Sex      0.7908 Balanced, <2
+
+Sample sizes
+                     Control Treated
+All                   100.       100
+Matched (ESS)          35.56      86
+Matched (Unweighted)   51.        86
+Unmatched              49.        14
