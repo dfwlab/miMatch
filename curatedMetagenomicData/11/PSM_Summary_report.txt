@@ -1,0 +1,39 @@
+
+Call:
+matchit(formula = Group ~ PC0 + PC1 + PC2, data = data, method = "nearest", 
+    distance = "glm", link = "logit", replace = TRUE, caliper = 0.2, 
+    ratio = 3)
+
+Summary of Balance for All Data:
+         Means Treated Means Control Std. Mean Diff. Var. Ratio eCDF Mean
+distance        0.5952        0.3846          1.2086     0.5599    0.2651
+PC0            -0.0428        0.0406         -1.2477     0.2059    0.1684
+PC1            -0.0005        0.0005         -0.7847     0.3145    0.1524
+PC2            -0.0000        0.0000         -0.1426     0.9675    0.0742
+         eCDF Max
+distance   0.4276
+PC0        0.3158
+PC1        0.3132
+PC2        0.2079
+
+
+Summary of Balance for Matched Data:
+         Means Treated Means Control Std. Mean Diff. Var. Ratio eCDF Mean
+distance        0.5782        0.5749          0.0185     0.9741    0.0248
+PC0            -0.0384       -0.0420          0.0550     0.4293    0.0746
+PC1            -0.0005       -0.0004         -0.0454     0.7915    0.0763
+PC2            -0.0000        0.0000         -0.0435     1.4827    0.0523
+         eCDF Max Std. Pair Dist.
+distance   0.1238          0.1085
+PC0        0.2381          1.0320
+PC1        0.2333          1.1097
+PC2        0.1667          0.9958
+
+Sample Sizes:
+              Control Treated
+All             40.        38
+Matched (ESS)   17.77      35
+Matched         29.        35
+Unmatched       11.         3
+Discarded        0.         0
+

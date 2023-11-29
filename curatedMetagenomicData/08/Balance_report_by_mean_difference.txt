@@ -1,0 +1,27 @@
+Call
+ matchit(formula = Group ~ PC0 + PC1 + PC2, data = data, method = "nearest", 
+    distance = "glm", link = "logit", replace = TRUE, caliper = 0.1, 
+    ratio = 1)
+
+Balance Measures
+             Type Diff.Adj        M.Threshold
+distance Distance   0.0229     Balanced, <0.1
+PC0       Contin.  -1.3509 Not Balanced, >0.1
+PC1       Contin.   0.6451 Not Balanced, >0.1
+PC2       Contin.  -0.0926     Balanced, <0.1
+
+Balance tally for mean differences
+                   count
+Balanced, <0.1         2
+Not Balanced, >0.1     2
+
+Variable with the greatest mean difference
+ Variable Diff.Adj        M.Threshold
+      PC0  -1.3509 Not Balanced, >0.1
+
+Sample sizes
+                     Control Treated
+All                     5.       403
+Matched (ESS)           1.62     164
+Matched (Unweighted)    4.       164
+Unmatched               1.       239
