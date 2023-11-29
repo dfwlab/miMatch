@@ -8,5 +8,6 @@ We developed a novel microbial metabolic background matching tool, namely miMatc
 - miMatch.py is the core algorithm file of miMatch.
 - config.ini is the configuration file for the algorithm.
 - /SimulatedDataset provides several sets of simulated data.
-- /Analysis provides the original analysis code.
+- /curatedMetagenomicData provides several metagenomic studies from curatedMetagenomicData.
+- /Analysis provides the original analysis codes.
 - /Figures provides the code of figures in the manuscript.
