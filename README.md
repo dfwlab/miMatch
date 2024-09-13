@@ -11,3 +11,5 @@ We developed a novel microbial metabolic background matching tool, namely miMatc
 - /curatedMetagenomicData provides several metagenomic studies from curatedMetagenomicData.
 - /Analysis provides the original analysis codes.
 - /Figures provides the code of figures in the manuscript.
+- /Benchmark provides xxx.
+- /Modeling provides xxx.
