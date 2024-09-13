@@ -51,7 +51,7 @@ class miMatch():
         # refresh global R environment
         r('rm(list = ls(all.names=TRUE))')
         r("as.data.frame(gc())")
-        # import packages
+        # import R packages
         importr('base')
         importr('MatchIt')
         importr('cobalt')
@@ -118,7 +118,7 @@ class miMatch():
         pair_set = []
         for i in pairs.index:
             for j in pairs.loc[i, :]:
-                if str(i) == 'NA_character_' or str(j) == 'NA_character_':
+                if (str(i) == 'NA_character_' or str(i).upper() == 'NAN') or (str(j) == 'NA_character_' or str(j).upper() == 'NAN'):
                     continue
                 pair_set.append([i, j])
         pair_set = pd.DataFrame(pair_set, columns=['Case', 'Control'])
@@ -342,6 +342,14 @@ class miMatch():
         self.output_figures(match, pairs, target, features, sum_all, sum_matched, balance_stats)
         return sample_size, match_drop_unmatched, match, pairs, sum_matched, balance_stats
     
+    def simu_match(self,data, target, features,caliper,ratio):
+        self.load_data(data)
+        self.check_output_dir()
+        psm = r("psm <- matchit(formula=%s~%s, data=data, method='nearest', distance='glm', link='logit', caliper=%s, ratio=%s, replace=TRUE)"%(target, '+'.join(features),caliper,ratio))
+        sample_size, match_drop_unmatched, match, pairs, sum_all, sum_matched, balance_stats = self.output_tables(target)
+        self.output_figures(match, pairs, target, features, sum_all, sum_matched, balance_stats)
+        return sample_size, match_drop_unmatched, match, pairs, sum_matched, balance_stats
+    
     def variance_pca(self, data, max_pc=np.nan, explained_variance_threshold=np.nan, min_pc=np.nan):
         self.check_output_dir()
         if pd.isnull(max_pc):
@@ -373,6 +381,13 @@ def run_miMatch(data, target, params, is_pca):
         data_pca[target] = data[target]
         data = data_pca
     sample_size, match_drop_unmatched, match, pairs, sum_matched, balance_stats = psm.propensity_score_match(data, target=target, features=features)
+    return sample_size, match_drop_unmatched, match, pairs, sum_matched, balance_stats
+
+def run_simu_match(data,target,params, features,caliper,ratio):
+    psm = miMatch()
+    for p1, p2, p3 in params:
+        psm.set_config(p1, p2, str(p3))
+    sample_size, match_drop_unmatched, match, pairs, sum_matched, balance_stats = psm.simu_match(data, target=target, features=features,caliper=caliper,ratio=ratio)
     return sample_size, match_drop_unmatched, match, pairs, sum_matched, balance_stats
 
 def run_miMatch_subprocess(data, target, params, is_pca=True):
@@ -422,7 +437,7 @@ def get_matched_pair_set(pairs):
     pair_set = []
     for i in pairs.index:
         for j in pairs.loc[i, :]:
-            if str(i) == 'NA_character_' or str(j) == 'NA_character_' :
+            if (str(i) == 'NA_character_' or str(i).upper() == 'NAN') or (str(j) == 'NA_character_' or str(j).upper() == 'NAN'):
                     continue
             pair_set.append([i, j])
     pair_set = pd.DataFrame(pair_set, columns=['Case', 'Control'])
@@ -437,7 +452,7 @@ def diff_by_signed_rank(data, pairs, features):
         y = data.loc[pair_set['Case'], f]
         x = data.loc[pair_set['Control'], f]
         try:
-            stat, p = wilcoxon_rank_sum_test(x, y)
+            stat, p = wilcoxon_signed_rank_test(x, y)
         except:
             stat, p = [None, 1.0]
         result.append([len(x), x.mean(), len(y), y.mean(), cohen_d(x, y), y.mean()/x.mean() if x.mean()!=0 else np.inf, p])
