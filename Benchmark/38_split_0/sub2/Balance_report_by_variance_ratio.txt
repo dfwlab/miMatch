@@ -1,0 +1,27 @@
+[4mCall[24m
+ matchit(formula = Group ~ PC0 + PC1 + PC2, data = data, method = "nearest", 
+    distance = "glm", link = "logit", replace = TRUE, caliper = NULL, 
+    ratio = 1)
+
+[4mBalance Measures[24m
+             Type Diff.Adj V.Ratio.Adj      V.Threshold
+distance Distance   0.3489      0.9879     Balanced, <2
+PC0       Contin.  -0.7487      0.7600     Balanced, <2
+PC1       Contin.   0.0917      5.5901 Not Balanced, >2
+PC2       Contin.   0.1603      4.2978 Not Balanced, >2
+
+[4mBalance tally for variance ratios[24m
+                 count
+Balanced, <2         2
+Not Balanced, >2     2
+
+[4mVariable with the greatest variance ratio[24m
+ Variable V.Ratio.Adj      V.Threshold
+      PC1      5.5901 Not Balanced, >2
+
+[4mSample sizes[24m
+                     Control Treated
+All                     20.       47
+Matched (ESS)            2.3      47
+Matched (Unweighted)     9.       47
+Unmatched               11.        0
